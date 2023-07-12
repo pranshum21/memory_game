@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Game!!</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            margin: 0;
+           
+           
+        }
+        .back{
+            height: 180px;
+        }
+        .main{
+
+            display: grid;
+            grid-template-columns: 135px 134px 135px 135px;
+            padding-left: 30px;
+            padding-top: 20px;
+           
+        }
+        
+        .background{
+            height: 800px;
+            background-image: url(pictures/background.jpg) ;
+            background-repeat: none;
+            background-size: 100%;
+        
+
+        }
+       
+    </style>
+</head>
+<body>
+     <div class="background">
+    <div class="main">
+    </div>
+</div>
+
+
+    <script>
+        let count =0;
+        let array2=[]
+        for(let i=0;i<12;i++){
+
+            document.querySelector('.main').innerHTML+=`<div class='card${i}'> <img class="back" src="pictures/card back.png"></div>  `
+        }
+        let array=[
+            { name:'lemon',
+                img: 'pictures/lemon.jpg'
+            },
+            { name:'lemon',
+                img: 'pictures/lemon.jpg'
+            },
+            { name:'child',
+                img: 'pictures/child.jpg'
+            },
+            { name:'child',
+                img: 'pictures/child.jpg'
+            },
+            { name:'boy',
+                img: 'pictures/boy.jpg'
+            },
+            { name:'boy',
+                img: 'pictures/boy.jpg'
+            },
+            { name:'bird',
+                img: 'pictures/bird.jpg'
+            },
+            { name:'bird',
+                img: 'pictures/bird.jpg'
+            },
+            { name:'tiger',
+                img: 'pictures/tiger.jpg'
+            },
+            { name:'tiger',
+                img: 'pictures/tiger.jpg'
+            },
+            { name:'basketball',
+                img: 'pictures/basketball.jpg'
+            },
+            { name:'basketball',
+                img: 'pictures/basketball.jpg'
+            }
+        ]
+        
+        array.sort(()=>0.5-Math.random());
+            for(let i=0;i<12;i++){
+        document.querySelector(`.card${i}`).addEventListener('click',
+        ()=>{
+            cardshow(`card${i}`,i)
+            // document.querySelector(`.card${i}`).innerHTML=`<img class="back" src="./pictures/${array[i].name}.jpg">`
+            // cardshow(`card${i}`);
+        }
+        )}
+        function cardshow(cardclass,i){
+        document.querySelector(`.${cardclass}`).innerHTML=`<img class="back" src="pictures/${array[i].name}.jpg">`
+            array2.push({newname:array[i].name,i});
+        count++;
+        if(count===2){
+            if(array2[0].newname===array2[1].newname){
+                setTimeout(()=>{
+                document.querySelector(`.card${array2[0].i}`).innerHTML='';
+                document.querySelector(`.card${array2[1].i}`).innerHTML='';
+                array2.splice(0,2);},1000)
+                count=0;
+            }
+            else{
+                setTimeout(()=>{
+                document.querySelector(`.card${array2[0].i}`).innerHTML='<img class="back" src="pictures/card back.png">';
+                document.querySelector(`.card${array2[1].i}`).innerHTML='<img class="back" src="pictures/card back.png">';
+                array2.splice(0,2);
+            },1000)
+            count=0;
+            }
+        }
+
+
+        }
+           
+            
+
+    </script>
+</body>
+</html>
